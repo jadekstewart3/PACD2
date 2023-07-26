@@ -11,6 +11,8 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
+
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -40,8 +42,9 @@ Capybara.register_driver :selenium_chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
+
 Capybara.javascript_driver = :selenium_chrome
-Capybara.default_max_wait_time = 0
+Capybara.default_max_wait_time = 10 
 
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
@@ -49,7 +52,9 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+
 end
+
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
